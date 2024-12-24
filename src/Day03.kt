@@ -32,10 +32,9 @@ fun main() {
     }
 
     val exampleInput = readInput("Day03_example")
-    check(part1(exampleInput) == 161)
+    checkEquals(part1(exampleInput), 161)
     val exampleInput2 = readInput("Day03_example2")
-    val part2 = part2(exampleInput2)
-    check(part2 == 48) { println(part2) }
+    checkEquals(part2(exampleInput2), 48)
 
     val input = readInput("Day03")
     part1(input).println()
