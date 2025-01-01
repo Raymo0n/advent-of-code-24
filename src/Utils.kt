@@ -20,6 +20,6 @@ fun String.md5() = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteA
  */
 fun Any?.println() = println(this)
 
-fun checkEquals(value: Any, should: Any){
-    check(value == should) { println("$value but should be $should") }
+fun checkEquals(value: Any, expected: Any) {
+    check(value == expected) { println("$value but should be $expected") }
 }
