@@ -15,7 +15,7 @@ fun main() {
     }
 
     fun isXmas(array: Array<Array<Char>>, row: Int, column: Int): Boolean {
-        if (row == 0 || column == 0 || row == array.size-1 || column == array[0].size-1){
+        if (row == 0 || column == 0 || row == array.size - 1 || column == array[0].size - 1) {
             return false
         }
         return (array[row - 1][column - 1].toString() + array[row + 1][column + 1].toString()).let { it == "MS" || it == "SM" }
@@ -67,6 +67,6 @@ fun main() {
     checkEquals(part2(exampleInput), 9)
 
     val input = readInput("Day04")
-    part1(input).println()
-    part2(input).println()
+    "Solution part 1: ${part1(input)}".println()
+    "Solution part 2: ${part2(input)}".println()
 }

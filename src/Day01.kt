@@ -27,10 +27,10 @@ fun main() {
     }
 
     val exampleInput = readInput("Day01_example")
-    check(part1(exampleInput) == 11L)
-    check(part2(exampleInput) == 31L)
+    checkEquals(part1(exampleInput), 11L)
+    checkEquals(part2(exampleInput), 31L)
 
     val input = readInput("Day01")
-    part1(input).println()
-    part2(input).println()
+    "Solution part 1: ${part1(input)}".println()
+    "Solution part 2: ${part2(input)}".println()
 }

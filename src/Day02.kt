@@ -41,10 +41,10 @@ fun main() {
     }
 
     val exampleInput = readInput("Day02_example")
-    check(part1(exampleInput) == 2)
-    check(part2(exampleInput) == 4)
+    checkEquals(part1(exampleInput), 2)
+    checkEquals(part2(exampleInput), 4)
 
     val input = readInput("Day02")
-    part1(input).println()
-    part2(input).println()
+    "Solution part 1: ${part1(input)}".println()
+    "Solution part 2: ${part2(input)}".println()
 }

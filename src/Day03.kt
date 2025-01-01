@@ -37,6 +37,6 @@ fun main() {
     checkEquals(part2(exampleInput2), 48)
 
     val input = readInput("Day03")
-    part1(input).println()
-    part2(input).println()
+    "Solution part 1: ${part1(input)}".println()
+    "Solution part 2: ${part2(input)}".println()
 }
