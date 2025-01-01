@@ -1,35 +1,5 @@
-private typealias Location = Pair<Int, Int>
-private typealias Grid<T> = Array<Array<T>>
 
 fun main() {
-
-    fun Location.north(): Location {
-        return Location(this.first - 1, this.second)
-    }
-
-    fun Location.east(): Location {
-        return Location(this.first, this.second + 1)
-    }
-
-    fun Location.south(): Location {
-        return Location(this.first + 1, this.second)
-    }
-
-    fun Location.west(): Location {
-        return Location(this.first, this.second - 1)
-    }
-
-    operator fun <T> Grid<T>.get(value: Location): T {
-        return this[value.first][value.second]
-    }
-
-    operator fun <T> Grid<T>.set(index: Location, value: T) {
-        this[index.first][index.second] = value
-    }
-
-    fun <T> Grid<T>.isOutOfBounds(value: Location): Boolean {
-        return value.first < 0 || value.second < 0 || value.first >= this.size || if (this.isEmpty()) false else value.second >= this[0].size
-    }
 
     fun getDistinctTrailheads(location: Location, topography: Grid<Int>, paths: Grid<Set<Location>?>): Set<Location> {
         if (paths[location] != null) {

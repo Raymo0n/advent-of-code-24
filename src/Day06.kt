@@ -1,20 +1,20 @@
 fun main() {
-    fun getNextPosition(position: Pair<Int, Int>, direction: Int): Pair<Int, Int> {
+    fun getNextPosition(position: Location, direction: Int): Location {
         return when (direction) {
             1 -> {
-                position.first - 1 to position.second
+                position.north()
             }
 
             2 -> {
-                position.first to position.second + 1
+                position.east()
             }
 
             4 -> {
-                position.first + 1 to position.second
+                position.south()
             }
 
             8 -> {
-                position.first to position.second - 1
+                position.west()
             }
 
             else -> error("wrong direction")
@@ -29,22 +29,18 @@ fun main() {
         }
     }
 
-    fun isOOB(position: Pair<Int, Int>, grid: Array<CharArray>): Boolean {
-        return position.first < 0 || position.first >= grid.size || position.second < 0 || position.second >= grid[0].size
-    }
-
-    fun isObstacle(position: Pair<Int, Int>, grid: Array<CharArray>): Boolean {
+    fun isObstacle(position: Pair<Int, Int>, grid: Grid<Char>): Boolean {
         return grid[position.first][position.second] == '#'
     }
 
-    fun isLoop(position: Pair<Int, Int>, direction: Int, visited: Array<IntArray>): Boolean {
+    fun isLoop(position: Pair<Int, Int>, direction: Int, visited: Grid<Int>): Boolean {
         return visited[position.first][position.second].and(direction) == 1
     }
 
     fun simulateGuard(
         startPosition: Pair<Int, Int>,
-        grid: Array<CharArray>,
-        visited: Array<IntArray>
+        grid: Grid<Char>,
+        visited: Grid<Int>
     ): Boolean {
         var guardPosition = startPosition
         var myDirection = 1
@@ -54,7 +50,7 @@ fun main() {
             }
             visited[guardPosition.first][guardPosition.second] += myDirection
             val nextPosition = getNextPosition(guardPosition, myDirection)
-            if (isOOB(nextPosition, grid)) {
+            if (grid.isOutOfBounds(nextPosition)) {
                 return false
             }
             if (isObstacle(nextPosition, grid)) {
@@ -69,9 +65,9 @@ fun main() {
 
     fun part1(input: List<String>): Int {
         val obstacleGrid = input
-            .map { it.toCharArray() }
+            .map { it.toCharArray().toTypedArray() }
             .toTypedArray()
-        val visited = Array(obstacleGrid.size, init = { IntArray(obstacleGrid[0].size, init = { 0 }) })
+        val visited = Array(obstacleGrid.size, init = { Array(obstacleGrid[0].size, init = { 0 }) })
 
         val guard =
             obstacleGrid.mapIndexed { row, chars ->
@@ -92,9 +88,9 @@ fun main() {
 
     fun part2(input: List<String>): Int {
         val obstacleGrid = input
-            .map { it.toCharArray() }
+            .map { it.toCharArray().toTypedArray() }
             .toTypedArray()
-        val visitedFirst = Array(obstacleGrid.size, init = { IntArray(obstacleGrid[0].size, init = { 0 }) })
+        val visitedFirst = Array(obstacleGrid.size, init = { Array(obstacleGrid[0].size, init = { 0 }) })
 
         val guard =
             obstacleGrid.mapIndexed { row, chars ->
@@ -115,7 +111,7 @@ fun main() {
 
         return obstaclePositions.count {
             obstacleGrid[it.first][it.second] = '#'
-            val visited = Array(obstacleGrid.size, init = { IntArray(obstacleGrid[0].size, init = { 0 }) })
+            val visited = Array(obstacleGrid.size, init = { Array(obstacleGrid[0].size, init = { 0 }) })
             val recursiveWalk = simulateGuard(guard, obstacleGrid, visited)
             obstacleGrid[it.first][it.second] = if (recursiveWalk) '-' else '!'
             recursiveWalk

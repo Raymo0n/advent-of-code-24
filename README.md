@@ -10,6 +10,14 @@ If you're stuck with Kotlin-specific questions or anything related to this templ
 - [Kotlin Slack][slack]
 - Template [issue tracker][issues]
 
+# Learning Notes
+- `zip`, `unzip`, `pairs` (first `to` second `to` ...)
+- Difference `groupingBy`, `groupBy`, `groupByTo`
+- [Differences Scope functions](https://kotlinlang.org/docs/scope-functions.html) (`let`, `apply`, `also`, ...)
+- Range: `1..5`, `1..<5`
+- Typealias: `typealias NewType = OtherType`
+- Operator Extension Function: `operator fun Type.minus(...) { ... }`
+- Measure Time: `measureTime`
 
 [^aoc]:
     [Advent of Code][aoc] – An annual event of Christmas-oriented programming challenges started December 2015.
