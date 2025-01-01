@@ -23,11 +23,8 @@ fun main() {
             return false
         }
 
-        if (operands.size == 0) {
-            if (result == intermediate) {
-                return true
-            }
-            return false
+        if (operands.isEmpty()) {
+            return result == intermediate
         }
 
         return isPossiblePart2(
